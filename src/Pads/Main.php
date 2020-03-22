@@ -1,13 +1,20 @@
 <?php
 
 namespace Pads\Main;
-use pocketmine\level\sound\FireworkLaunch;
+
+use pocketmine\level\sound\AnvilUseSound;
+use pocketmine\math\Vector3;
 
 public function onPlayerMoveEvent(PlayerMoveEvent $event) {
     
 $b = $p->getLevel()->getBlock($p->floor()->subtract(0, 1));
 if ($b->getId() === BlockIds::NOTE_BLOCK){
-            $p->playSound('firework.launch');
+    $level = $event->getPlayer()->getLevel();
+$x = $event->getPlayer()->getX();
+$y = $event->getPlayer()->getY();
+$z = $event->getPlayer()->getZ();
+$pos = new Vector3($x, $y, $z);
+            $level->addSound(new AnvilUseSound($pos));
 
             switch ($p->getDirection()){
                 case 0:
