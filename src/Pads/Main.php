@@ -4,9 +4,10 @@ namespace Pads\Main;
 
 use pocketmine\level\sound\AnvilUseSound;
 use pocketmine\math\Vector3;
+use pocketmine\event\player\PlayerMoveEvent;
 
 public function onPlayerMoveEvent(PlayerMoveEvent $event) {
-    
+ $p = $ev->getPlayer();
 $b = $p->getLevel()->getBlock($p->floor()->subtract(0, 1));
 if ($b->getId() === BlockIds::NOTE_BLOCK){
     $level = $event->getPlayer()->getLevel();
